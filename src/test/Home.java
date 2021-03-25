@@ -156,7 +156,6 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
@@ -164,7 +163,10 @@ public class Home extends javax.swing.JFrame {
                         .addGap(24, 24, 24))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addGap(38, 38, 38))))
+                        .addGap(38, 38, 38))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,7 +256,7 @@ public class Home extends javax.swing.JFrame {
         initialize_windows();    }//GEN-LAST:event_button_registerActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+       initialize_windows_dos();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -303,5 +305,16 @@ public class Home extends javax.swing.JFrame {
         windows_one.setLocationRelativeTo(null); // Para centralizar la ventana
         windows_one.setResizable(false); // Para desabilitar el auto resizable, es decir no manipular las dimenciones del JFrame
         windows_one.getContentPane().setBackground(Color.WHITE); // COlor en el panel
+    }
+    
+    private void initialize_windows_dos() {
+        // propiedades de Frame
+        Consult_user windows_two = new Consult_user();
+        windows_two.setVisible(true);
+        windows_two.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        windows_two.getContentPane().setLayout(null);
+        windows_two.setLocationRelativeTo(null); // Para centralizar la ventana
+        windows_two.setResizable(false); // Para desabilitar el auto resizable, es decir no manipular las dimenciones del JFrame
+        windows_two.getContentPane().setBackground(Color.WHITE); // COlor en el panel
     }
 }

@@ -1,6 +1,7 @@
 package test;
 
 import java.awt.Color;
+import java.awt.event.ItemEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import java.util.regex.*;
@@ -11,7 +12,7 @@ public class Register_user extends javax.swing.JFrame {
         initComponents();
         this.setIconImage(new ImageIcon(getClass().getResource("../image/icon.png")).getImage());
         for (int i = 18; i <= 100; i++) {
-            Field_edad.addItem(String.valueOf(i));
+            combo_edad.addItem(String.valueOf(i));
         }
 
     }
@@ -29,20 +30,18 @@ public class Register_user extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         field_apellido = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        Field_edad = new javax.swing.JComboBox<>();
-        Field_estado = new javax.swing.JComboBox<>();
+        combo_edad = new javax.swing.JComboBox<>();
+        combo_estado = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         field_telefono = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         field_direccion = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        Field_nacimiento = new javax.swing.JTextField();
+        field_nacimiento = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         field_documento = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Falied_estudios = new javax.swing.JList<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         field_profesion = new javax.swing.JTextField();
@@ -51,7 +50,8 @@ public class Register_user extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         field_empresa = new javax.swing.JTextField();
         buttom_guardar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        combo_profesion = new javax.swing.JComboBox<>();
+        combo_estudio = new javax.swing.JComboBox<>();
 
         jLabel5.setText("jLabel5");
 
@@ -96,20 +96,31 @@ public class Register_user extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(102, 102, 255));
         jLabel3.setText("Edad:");
 
-        Field_edad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Field_edad.setForeground(new java.awt.Color(153, 153, 255));
-        Field_edad.addActionListener(new java.awt.event.ActionListener() {
+        combo_edad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        combo_edad.setForeground(new java.awt.Color(153, 153, 255));
+        combo_edad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona" }));
+        combo_edad.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo_edadItemStateChanged(evt);
+            }
+        });
+        combo_edad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Field_edadActionPerformed(evt);
+                combo_edadActionPerformed(evt);
             }
         });
 
-        Field_estado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Field_estado.setForeground(new java.awt.Color(153, 153, 255));
-        Field_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soltero", "Casado" }));
-        Field_estado.addActionListener(new java.awt.event.ActionListener() {
+        combo_estado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        combo_estado.setForeground(new java.awt.Color(153, 153, 255));
+        combo_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "Soltero", "Casado" }));
+        combo_estado.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo_estadoItemStateChanged(evt);
+            }
+        });
+        combo_estado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Field_estadoActionPerformed(evt);
+                combo_estadoActionPerformed(evt);
             }
         });
 
@@ -141,17 +152,22 @@ public class Register_user extends javax.swing.JFrame {
 
         field_direccion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         field_direccion.setForeground(new java.awt.Color(153, 153, 255));
+        field_direccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                field_direccionActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 255));
         jLabel8.setText("Ciudad de nacimiento:");
 
-        Field_nacimiento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Field_nacimiento.setForeground(new java.awt.Color(153, 153, 255));
-        Field_nacimiento.setPreferredSize(new java.awt.Dimension(5, 21));
-        Field_nacimiento.addKeyListener(new java.awt.event.KeyAdapter() {
+        field_nacimiento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        field_nacimiento.setForeground(new java.awt.Color(153, 153, 255));
+        field_nacimiento.setPreferredSize(new java.awt.Dimension(5, 21));
+        field_nacimiento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                Field_nacimientoKeyTyped(evt);
+                field_nacimientoKeyTyped(evt);
             }
         });
 
@@ -170,15 +186,6 @@ public class Register_user extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 255));
         jLabel10.setText("Estudios realizados:");
-
-        Falied_estudios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Falied_estudios.setForeground(new java.awt.Color(153, 153, 255));
-        Falied_estudios.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Primaria", "Bachillerato", "Técnico", "Tecnologo", "Universidad", "Especializacion", "Maestria", "Doctorado" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(Falied_estudios);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(102, 102, 255));
@@ -228,10 +235,27 @@ public class Register_user extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 año", "2 años", "3 años ", "4 años ", "5 años", "5+ años" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        combo_profesion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        combo_profesion.setForeground(new java.awt.Color(153, 153, 255));
+        combo_profesion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "1 año", "2 años", "3 años ", "4 años ", "5 años", "5+ años" }));
+        combo_profesion.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo_profesionItemStateChanged(evt);
+            }
+        });
+        combo_profesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                combo_profesionActionPerformed(evt);
+            }
+        });
+
+        combo_estudio.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        combo_estudio.setForeground(new java.awt.Color(153, 153, 255));
+        combo_estudio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona ", "Primaria ", "Bachillerato", "Técnic(a)", "Tecnologo", "Universitari(a)", "Especialización", "Maestria ", "Doctorado", " " }));
+        combo_estudio.setToolTipText("");
+        combo_estudio.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo_estudioItemStateChanged(evt);
             }
         });
 
@@ -255,25 +279,9 @@ public class Register_user extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(field_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(field_documento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                                            .addComponent(field_direccion, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(field_trabat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-                                                .addComponent(field_empresa, javax.swing.GroupLayout.Alignment.TRAILING))))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(Field_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(field_profesion, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel4)
+                                .addGap(12, 12, 12)
+                                .addComponent(combo_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -281,31 +289,52 @@ public class Register_user extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(Field_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(combo_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+                                        .addComponent(combo_estudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(Field_nacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(4, 4, 4)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel14))))
-                        .addContainerGap())
+                                        .addComponent(field_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel11)))
+                        .addGap(114, 114, 114))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                        .addComponent(buttom_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(field_profesion, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(246, 246, 246)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel14)
+                                            .addComponent(jLabel13))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(field_documento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                                    .addComponent(field_direccion, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(field_trabat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                                    .addComponent(field_empresa, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addContainerGap())))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(combo_profesion, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttom_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,7 +342,7 @@ public class Register_user extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(Field_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(combo_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -324,7 +353,7 @@ public class Register_user extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(field_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(Field_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(combo_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -339,28 +368,28 @@ public class Register_user extends javax.swing.JFrame {
                         .addComponent(field_documento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Field_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(field_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                            .addComponent(jComboBox1))
+                            .addComponent(combo_estudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(68, 68, 68)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(combo_profesion, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(field_profesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(field_trabat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel13))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(field_empresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel14))
                         .addGap(27, 27, 27)
@@ -382,28 +411,160 @@ public class Register_user extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Field_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field_edadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Field_edadActionPerformed
+    private void combo_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_edadActionPerformed
 
-    private void Field_estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field_estadoActionPerformed
+    }//GEN-LAST:event_combo_edadActionPerformed
+
+    private void combo_estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_estadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Field_estadoActionPerformed
+    }//GEN-LAST:event_combo_estadoActionPerformed
 
     private void buttom_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttom_guardarActionPerformed
-        String valor_user = field_direccion.getText().trim();
+        //Atributos generales para el cliente
+        // JTextField
+        String valor_dire = field_direccion.getText().trim();
+        String valor_nombre = field_nombre.getText().trim();
+        String valor_apellido = field_apellido.getText().trim();
+        String valor_nacimiento = field_nacimiento.getText().trim();
+        String valor_profesion = field_profesion.getText().trim();
+        String valor_trabat = field_trabat.getText().trim();
+        String valor_empresa = field_empresa.getText().trim();
+        String valordos_tele = field_telefono.getText().trim();
+        String valortres_id = field_documento.getText().trim();
+        int valor_combo_estudio = combo_estudio.getSelectedIndex();
+        int valor_combo_profesion = combo_profesion.getSelectedIndex();
+        int valor_combo_estado = combo_estado.getSelectedIndex();
+        int valor_combo_edad = combo_edad.getSelectedIndex();
+        try {
 
-        if (valor_user.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "¡El campo: Dirección es obligatorio!", "Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
-
-        } else {
-            Pattern pattern_text = Pattern.compile("^[cC]r.*"); // Establecimos esa regla (regex) | // Simbolo: La cadena String(JTextfield) empieza por "cr" o "CR"
-            Matcher value_valid = pattern_text.matcher(valor_user);
-            if (value_valid.matches()) {
-                field_direccion.setBackground(Color.green);
-            } else {
+            // Comprobar si todos los campos estan vacíos
+            if (valor_dire.isEmpty() && valortres_id.isEmpty() && valordos_tele.isEmpty() && valor_nombre.isEmpty()
+                    && valor_apellido.isEmpty() && valor_nacimiento.isEmpty() && valor_profesion.isEmpty()
+                    && valor_trabat.isEmpty() && valor_empresa.isEmpty() && valor_combo_estudio  == 0
+                    && valor_combo_profesion == 0  && valor_combo_estado == 0 && valor_combo_edad == 0 ) {
+                field_nombre.setBackground(Color.red);
+                field_apellido.setBackground(Color.red);
+                field_nacimiento.setBackground(Color.red);
+                field_trabat.setBackground(Color.red);
+                field_empresa.setBackground(Color.red);
                 field_direccion.setBackground(Color.red);
-                JOptionPane.showMessageDialog(null, "¡Debes iniciar con: Cr!", "Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
+                field_documento.setBackground(Color.red);
+                field_telefono.setBackground(Color.red);
+                field_profesion.setBackground(Color.red);
+                combo_estudio.setBackground(Color.red);
+                combo_profesion.setBackground(Color.red);
+                combo_estado.setBackground(Color.red);
+                combo_edad.setBackground(Color.red);
+                JOptionPane.showMessageDialog(null, "¡Todos los campos son obligatorios!", "Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
+                    
+            } else {
+
+                // combo_profesion.setBackground(Color.green);
+                int valor_telefono = Integer.parseInt(valordos_tele);
+                int valor_id = Integer.parseInt(valortres_id);
+
+                Pattern pattern_text = Pattern.compile("^[cC]r.*"); // Establecimos esa regla (regex) | // Simbolo: La cadena String(JTextfield) empieza por "cr" o "CR"
+                Matcher value_valid = pattern_text.matcher(valor_dire);
+                if (value_valid.matches()) {
+                    field_direccion.setBackground(Color.green);
+                    People instancia_clase = People.obtener_instancia_unica();
+                    instancia_clase.añadir_datos(valor_dire, valor_nombre, valor_apellido,
+                            valor_nacimiento, valor_profesion, valor_trabat,
+                            valor_empresa, valordos_tele, valortres_id, valor_combo_estudio,
+                            valor_combo_profesion, valor_combo_edad, valor_combo_estado);
+
+                } else {
+                    field_direccion.setBackground(Color.red);
+                    JOptionPane.showMessageDialog(null, "¡Debes iniciar en el campo Dirección con: Cr!", "Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (java.lang.NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "¡Todos los campos son obligatorios!", "Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
+            if (valor_combo_estudio == 0) {
+                combo_estudio.setBackground(Color.red);
+            } else {
+                combo_estudio.setBackground(Color.green);
+            }
+            
+             if (valor_combo_profesion == 0) {
+                combo_profesion.setBackground(Color.red);
+            } else {
+                combo_profesion.setBackground(Color.green);
+            }
+              if (valor_combo_edad == 0) {
+                combo_edad.setBackground(Color.red);
+            } else {
+                combo_edad.setBackground(Color.green);
+            }
+               if (valor_combo_estado == 0) {
+                combo_estado.setBackground(Color.red);
+            } else {
+                combo_estado.setBackground(Color.green);
+            }
+             
+            if (valortres_id.isEmpty()) {
+                field_documento.setBackground(Color.red);
+            } else {
+                field_documento.setBackground(Color.green);
+
+            }
+            if (valordos_tele.isEmpty()) {
+                field_telefono.setBackground(Color.red);
+
+            } else {
+                field_telefono.setBackground(Color.green);
+
+            }
+            if (valor_nombre.isEmpty()) {
+                field_nombre.setBackground(Color.red);
+
+            } else {
+                field_nombre.setBackground(Color.green);
+
+            }
+            if (valor_apellido.isEmpty()) {
+                field_apellido.setBackground(Color.red);
+            } else {
+                field_apellido.setBackground(Color.green);
+
+            }
+            if (valor_nacimiento.isEmpty()) {
+                field_nacimiento.setBackground(Color.red);
+            } else {
+                field_nacimiento.setBackground(Color.green);
+            }
+            if (valor_profesion.isEmpty()) {
+                field_profesion.setBackground(Color.red);
+
+            } else {
+                field_profesion.setBackground(Color.green);
+
+            }
+            if (valor_trabat.isEmpty()) {
+                field_trabat.setBackground(Color.red);
+
+            } else {
+                field_trabat.setBackground(Color.green);
+
+            }
+            if (valor_empresa.isEmpty()) {
+                field_empresa.setBackground(Color.red);
+
+            } else {
+                field_trabat.setBackground(Color.green);
+            }
+
+            if (valor_dire.isEmpty()) {
+                field_direccion.setBackground(Color.red);
+            } else {
+                Pattern pattern_text = Pattern.compile("^[cC]r.*"); // Establecimos esa regla (regex) | // Simbolo: La cadena String(JTextfield) empieza por "cr" o "CR"
+                Matcher value_valid = pattern_text.matcher(valor_dire);
+                if (value_valid.matches()) {
+                    field_direccion.setBackground(Color.green);
+                } else {
+                    field_direccion.setBackground(Color.red);
+                    JOptionPane.showMessageDialog(null, "¡Debes iniciar con: Cr!", "Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
 
@@ -445,22 +606,22 @@ public class Register_user extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_field_telefonoKeyTyped
 
-    private void Field_nacimientoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Field_nacimientoKeyTyped
+    private void field_nacimientoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_field_nacimientoKeyTyped
         char clic_validar = evt.getKeyChar();
         if (Character.isDigit(clic_validar)) {
             getToolkit().beep();
             evt.consume();
-            Field_nacimiento.setBackground(Color.red);
+            field_nacimiento.setBackground(Color.red);
             JOptionPane.showMessageDialog(null, "¡Debes ingresar texto plano!", " Mensaje del sistema", JOptionPane.ERROR_MESSAGE);
 
         } else {
-            Field_nacimiento.setBackground(Color.green);
+            field_nacimiento.setBackground(Color.green);
         }
-    }//GEN-LAST:event_Field_nacimientoKeyTyped
+    }//GEN-LAST:event_field_nacimientoKeyTyped
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void combo_profesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_profesionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_combo_profesionActionPerformed
 
     private void field_documentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_field_documentoKeyTyped
         char clic_validar = evt.getKeyChar();
@@ -518,6 +679,50 @@ public class Register_user extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel7KeyPressed
 
+    private void combo_estudioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_estudioItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (this.combo_estudio.getSelectedIndex() > 0) {
+                combo_estudio.setBackground(Color.green);
+            } else {
+                combo_estudio.setBackground(Color.red);
+            }
+        }
+    }//GEN-LAST:event_combo_estudioItemStateChanged
+
+    private void combo_profesionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_profesionItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (this.combo_profesion.getSelectedIndex() > 0) {
+                combo_profesion.setBackground(Color.green);
+            } else {
+                combo_profesion.setBackground(Color.red);
+            }
+        }
+    }//GEN-LAST:event_combo_profesionItemStateChanged
+
+    private void combo_edadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_edadItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (this.combo_edad.getSelectedIndex() > 0) {
+                combo_edad.setBackground(Color.green);
+            } else {
+                combo_edad.setBackground(Color.red);
+            }
+        }
+    }//GEN-LAST:event_combo_edadItemStateChanged
+
+    private void combo_estadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo_estadoItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (this.combo_estado.getSelectedIndex() > 0) {
+                combo_estado.setBackground(Color.green);
+            } else {
+                combo_estado.setBackground(Color.red);
+            }
+        }
+    }//GEN-LAST:event_combo_estadoItemStateChanged
+
+    private void field_direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_direccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_field_direccionActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -528,20 +733,20 @@ public class Register_user extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> Falied_estudios;
-    private javax.swing.JComboBox<String> Field_edad;
-    private javax.swing.JComboBox<String> Field_estado;
-    private javax.swing.JTextField Field_nacimiento;
     private javax.swing.JButton buttom_guardar;
+    private javax.swing.JComboBox<String> combo_edad;
+    private javax.swing.JComboBox<String> combo_estado;
+    private javax.swing.JComboBox<String> combo_estudio;
+    private javax.swing.JComboBox<String> combo_profesion;
     private javax.swing.JTextField field_apellido;
     private javax.swing.JTextField field_direccion;
     private javax.swing.JTextField field_documento;
     private javax.swing.JTextField field_empresa;
+    private javax.swing.JTextField field_nacimiento;
     private javax.swing.JTextField field_nombre;
     private javax.swing.JTextField field_profesion;
     private javax.swing.JTextField field_telefono;
     private javax.swing.JTextField field_trabat;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
@@ -559,6 +764,5 @@ public class Register_user extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,5 @@
 package test;
-
+// Hecho por Aimar Camilo Rubiano Orozco y Anyeloj Armando Valencia 
 import java.awt.Color;
 import java.awt.event.ItemEvent;
 import javax.swing.ImageIcon;
@@ -435,6 +435,7 @@ public class Register_user extends javax.swing.JFrame {
         int valor_combo_profesion = combo_profesion.getSelectedIndex();
         int valor_combo_estado = combo_estado.getSelectedIndex();
         int valor_combo_edad = combo_edad.getSelectedIndex();
+        String valorString_edad = (String) combo_edad.getSelectedItem().toString();
         try {
 
             // Comprobar si todos los campos estan vacíos
@@ -471,7 +472,7 @@ public class Register_user extends javax.swing.JFrame {
                     instancia_clase.añadir_datos(valor_dire, valor_nombre, valor_apellido,
                             valor_nacimiento, valor_profesion, valor_trabat,
                             valor_empresa, valordos_tele, valortres_id, valor_combo_estudio,
-                            valor_combo_profesion, valor_combo_edad, valor_combo_estado);
+                            valor_combo_profesion, valorString_edad, valor_combo_estado);
 
                 } else {
                     field_direccion.setBackground(Color.red);

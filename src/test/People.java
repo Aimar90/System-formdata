@@ -3,19 +3,8 @@ package test;
 
 import java.util.ArrayList;
 //import java.util.Iterator;
-import javax.swing.JOptionPane;
 
 public class People {
-
-    private String valor_dire;
-    private String valor_nombre;
-    private String valor_apellido;
-    private String valor_nacimiento;
-    private String valor_profesion;
-    private String valor_trabat;
-    private String valor_empresa;
-    private String valordos_tele;
-    private String valortres_id;
 
     private ArrayList<String> lista_data_campos;
     private static People instancia;
@@ -38,7 +27,7 @@ public class People {
     public void añadir_datos(String valor_dire, String valor_nombre, String valor_apellido, String valor_nacimiento, String valor_profesion,
             String valor_trabat, String valor_empresa, String valordos_tele,
             String valortres_id, int valor_combo_estudio,
-            int valor_combo_profesion, int valor_combo_edad, int valor_combo_estado) {
+            int valor_combo_profesion, String valor_combo_edad, int valor_combo_estado) {
 
         lista_data_campos = new ArrayList<String>();
         lista_data_campos.add(valor_dire); // 0
@@ -53,42 +42,45 @@ public class People {
 
         // Obtener selección del combo estudio
         if (valor_combo_estudio == 1) { // Primaria  
-            lista_data_campos.add(String.valueOf(valor_combo_estudio));
+            lista_data_campos.add("Primaria");
         } else if (valor_combo_estudio == 2) {// Bachillerato 
-            lista_data_campos.add(String.valueOf(valor_combo_estudio));
+            lista_data_campos.add("Bachillerato");
         } else if (valor_combo_estudio == 3) {// Técnic(a) 
-            lista_data_campos.add(String.valueOf(valor_combo_estudio));
+            lista_data_campos.add("Técnic(a)");
         } else if (valor_combo_estudio == 4) {  // Tecnologo
-            lista_data_campos.add(String.valueOf(valor_combo_estudio));
+            lista_data_campos.add("Tecnologo");
         } else if (valor_combo_estudio == 5) {// Universitari(a)
-            lista_data_campos.add(String.valueOf(valor_combo_estudio));
+            lista_data_campos.add("Universitari(a)");
         } else if (valor_combo_estudio == 6) { // Especialización 
-            lista_data_campos.add(String.valueOf(valor_combo_estudio));
+            lista_data_campos.add("Especialización");
         } else if (valor_combo_estudio == 7) {// Maestria 
-            lista_data_campos.add(String.valueOf(valor_combo_estudio)); // Doctorado 
+            lista_data_campos.add("Maestria"); // Doctorado 
         } else if (valor_combo_estudio == 7) {// Doctorado 
-            lista_data_campos.add(String.valueOf(valor_combo_estudio)); // Doctorado 
+            lista_data_campos.add("Doctorado"); // Doctorado 
         }
         // Obtener selección del combo profesión
         if (valor_combo_profesion == 1) { //  1 año  
-            lista_data_campos.add(String.valueOf(valor_combo_profesion));
+            lista_data_campos.add("1 año");
         } else if (valor_combo_profesion == 2) {//   2 años
-            lista_data_campos.add(String.valueOf(valor_combo_profesion));
+            lista_data_campos.add("2 años");
         } else if (valor_combo_profesion == 3) {// 3 años 
-            lista_data_campos.add(String.valueOf(valor_combo_profesion));
+            lista_data_campos.add("3 años");
         } else if (valor_combo_profesion == 4) {  // 4 años
-            lista_data_campos.add(String.valueOf(valor_combo_profesion));
+            lista_data_campos.add("4 años");
         } else if (valor_combo_profesion == 5) {// 5  años
-            lista_data_campos.add(String.valueOf(valor_combo_profesion));
+            lista_data_campos.add("5 años");
         } else if (valor_combo_profesion == 6) { // 5+ años 
-            lista_data_campos.add(String.valueOf(valor_combo_profesion));
+            lista_data_campos.add("5+ años ");
         }
             // obtener seleccion del combo estado
         if (valor_combo_estado == 1) { // soltero 
-            lista_data_campos.add(String.valueOf(valor_combo_estado));
+            lista_data_campos.add("soltero");
         } else if (valor_combo_estado == 2) {//   casado
-            lista_data_campos.add(String.valueOf(valor_combo_estado));
+            lista_data_campos.add("casado");
         }
-
+        lista_data_campos.add(valor_combo_edad);
+   
+        
     }
+    
 }
